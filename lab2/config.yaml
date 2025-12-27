@@ -1,0 +1,22 @@
+db:
+  uri: "mongodb://localhost:27017"
+  database: "searchdoc"
+  documents_collection: "documents"
+  queue_collection: "crawl_queue"
+  checkpoints_collection: "checkpoints"
+logic:
+  sources:
+    - name: "interfax"
+      sitemap: "https://www.interfax.ru/SEO_SiteMapIndex.xml"
+      pattern: 'https://www\.interfax\.ru/[^/]+/\d+$'
+      target: 20000
+      pool: 40000
+    - name: "tass"
+      sitemap: "https://tass.ru/sitemap.xml"
+      pattern: 'https://tass\.ru/[^/]+/\d+$'
+      target: 20000
+      pool: 40000
+  delay_seconds: 1.5
+  user_agent: "Mozilla/5.0"
+  recrawl_hours: 144
+  batch_size: 50
